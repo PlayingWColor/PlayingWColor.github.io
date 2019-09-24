@@ -1,0 +1,44 @@
+Game Grumps VS:The Game
+Alpha v1.0.0 Release Notes
+-------------------
+Friday, September 27th, 2019
+-------------------
+Additions & Changes
+-------------------
++Simple Character
++Movement Engine
+	+Momentum
+	+Walking
+	+Running
+	+Skidding
+	+Jumping(needs work)
+	+Short Hops(controller only)
+	+Double Jump
+	+Hitting Head on ceiling
+	+Ledgework
+		*Grabbing
+		*Jumping Up
+		*Climbing Up
+	+One way platforms
+	+Teetering on edges(needs work)
++Added Simple Player predictive camera
++Random Background Cubes
++Simple Attack Builder
+	+Arin's Basic Attacks 
+	+Arin's Smash Attacks
++Basics of Fighting Engine Implemented
+	+Percentage Increase
+	+Getting Hit/ Shaking
+	+Rudementary Launching(needs work)
++Changed Simple Character to Arin
++Random Cubes are now Spheres
++Basic Interface "Debugger Interface"
+	+Load and Unload Multiple Stages
+	+Handles information of 4 players(percentage, location on screen, keyboard inputs, etc.)
+	+Game Logo
+	+Version Info
++Changed Camera to work with the positions of the four players as found in Debugger Interface
++HTML Additions
+	+Link to Patreon, Twitter, and YouTube
+-------------------
+Bug Fixes will be written here in later versions
