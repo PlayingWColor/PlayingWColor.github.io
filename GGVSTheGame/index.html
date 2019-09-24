@@ -94,6 +94,7 @@
         width: 98%;
         height: 10%;
 		z-index: 1;
+		display: none;
       }
 	  /* style for overlay release notes */
 	#notes {
@@ -104,6 +105,15 @@
         height: 10%;
 		z-index: 1;
       }
+	#comingSoon {
+	    position: absolute;
+        left: 0%;
+        top: 72%;
+        width: 98%;
+        height: 10%;
+		z-index: 1;
+		display: none;
+	  }
     </style>
   </head>
 
@@ -118,6 +128,9 @@
 	<a href="./releaseNotes.txt" target="_blank"><img src="RNButton.png" width="172" height="57"hspace="5"></a>
 	</div>
 	
+	<div id="comingSoon">
+	<img src="DanComingSoon.png" width="300" height="150"hspace="5">
+	</div>
 	
     <div id="loader">
       <img class="logo" src="logo.png">
@@ -136,16 +149,21 @@
       return;
     }
     const loader = document.querySelector("#loader");
+	const comingSoon = document.querySelector("#comingSoon")
+	const links = document.querySelector("#links")
     if (!gameInstance.progress) {
       const progress = document.querySelector("#loader .progress");
       progress.style.display = "block";
       gameInstance.progress = progress.querySelector(".full");
       loader.querySelector(".spinner").style.display = "none";
+	  
     }
     gameInstance.progress.style.transform = `scaleX(${progress})`;
     if (progress === 1 && !gameInstance.removeTimeout) {
       gameInstance.removeTimeout = setTimeout(function() {
           loader.style.display = "none";
+		  comingSoon.style.display = "block";
+		  links.style.display = "block";
       }, 2000);
     }
   }

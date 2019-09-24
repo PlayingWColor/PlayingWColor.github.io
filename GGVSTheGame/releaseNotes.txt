@@ -40,5 +40,7 @@ Additions & Changes
 +Changed Camera to work with the positions of the four players as found in Debugger Interface
 +HTML Additions
 	+Link to Patreon, Twitter, and YouTube
+	+Release Notes
+	+Dan Coming Soon
 -------------------
 Bug Fixes will be written here in later versions
