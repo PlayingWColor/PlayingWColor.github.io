@@ -1,4 +1,24 @@
 Game Grumps VS:The Game
+===================
+Alpha v1.1.0 Release Notes
+-------------------
+Friday, October 11th, 2019
+-------------------
+Additions & Changes
+-------------------
++Added Credits
++Brightened Text on Buttons
++Spiraling Down Falling
++Landing On the Ground
++Laying Down
++Getting Up
+-------------------
+Bug Fixes
+-------------------
++Improved Launching Momentum
++Improved In Air Momentum
+
+===================
 Alpha v1.0.0 Release Notes
 -------------------
 Friday, September 27th, 2019

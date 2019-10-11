@@ -86,84 +86,37 @@
           transform: rotate(360deg);
         }
       }
-	/* style for overlay links to external sites */
-	#links {
-        position: absolute;
-        left: 2%;
-        top: 90%;
-        width: 98%;
-        height: 10%;
-		z-index: 1;
-		display: none;
-      }
-	  /* style for overlay release notes */
-	#notes {
-        position: absolute;
-        left: 2%;
-        top: 0%;
-        width: 98%;
-        height: 10%;
-		z-index: 1;
-      }
-	#comingSoon {
-	    position: absolute;
-        left: 0%;
-        top: 72%;
-        width: 98%;
-        height: 10%;
-		z-index: 1;
-		display: none;
-	  }
+
     </style>
   </head>
 
   <body>
-	
     <div id="gameContainer"></div>
-	
-	<div id="links">
-	<a href="https://www.patreon.com/bePatron?u=23778801" target="_blank"><img src="become_a_patron_button_outline.png" width="223" height="57"hspace="5"></a>
-	<a href="https://www.youtube.com/channel/UChLbmwwzZCM37fMEdLa-UeQ" target="_blank"><img src="youtube_social_square.png" width="57" height="57"hspace="5"></a>
-	<a href="https://twitter.com/playingwcolor" target="_blank"><img src="Twitter_Social_Icon_Square.png" width="57" height="57"hspace="5"></a>
-	<a href="./releaseNotes.txt" target="_blank"><img src="RNButton.png" width="172" height="57"hspace="5"></a>
-	</div>
-	
-	<div id="comingSoon">
-	<img src="DanComingSoon.png" width="300" height="150"hspace="5">
-	</div>
-	
     <div id="loader">
       <img class="logo" src="logo.png">
       <div class="spinner"></div>
       <div class="progress"><div class="full"></div></div>
     </div>
-	
-	
   </body>
 
   <script src="Build/UnityLoader.js"></script>
   <script>
-  var gameInstance = UnityLoader.instantiate("gameContainer", "Build/Alphav1.0.0.json", {onProgress: UnityProgress});
+  var gameInstance = UnityLoader.instantiate("gameContainer", "Build/Alphav1.1.0.json", {onProgress: UnityProgress});
   function UnityProgress(gameInstance, progress) {
     if (!gameInstance.Module) {
       return;
     }
     const loader = document.querySelector("#loader");
-	const comingSoon = document.querySelector("#comingSoon")
-	const links = document.querySelector("#links")
     if (!gameInstance.progress) {
       const progress = document.querySelector("#loader .progress");
       progress.style.display = "block";
       gameInstance.progress = progress.querySelector(".full");
       loader.querySelector(".spinner").style.display = "none";
-	  
     }
     gameInstance.progress.style.transform = `scaleX(${progress})`;
     if (progress === 1 && !gameInstance.removeTimeout) {
       gameInstance.removeTimeout = setTimeout(function() {
           loader.style.display = "none";
-		  comingSoon.style.display = "block";
-		  links.style.display = "block";
       }, 2000);
     }
   }
