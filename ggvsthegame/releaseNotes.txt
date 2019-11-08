@@ -1,5 +1,25 @@
 Game Grumps VS:The Game
 ===================
+Alpha v1.2.0 Release Notes
+-------------------
+Friday, November 8th, 2019
+-------------------
+Additions & Changes
+-------------------
++Dan!!!
+	+Unique Animations
+	+Unique Momentum 
+	+Unique Attacks
++Game now starts with Arin & Dan
++Ability to change character
+-------------------
+Bug Fixes
+-------------------
++Face textures now rotate with head
++Slight camera adjustments
++Improvements to momentum
+
+===================
 Alpha v1.1.0 Release Notes
 -------------------
 Friday, October 11th, 2019
