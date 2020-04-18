@@ -1,5 +1,18 @@
 Game Grumps VS:The Game
 ===================
+Alpha v1.4.0 Release Nots
+-------------------
+Friday, April 17th, 2020
+-------------------
+Additions & Changes
+-------------------
++Added VFX System
+	+VFX for movements
+	+VFX system for attacks
+	+Arin attack VFX
+	+Dan attack VFX
+
+===================
 Alpha v1.3.0 Release Notes
 -------------------
 Friday, November 15th, 2019
