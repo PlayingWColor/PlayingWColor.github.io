@@ -173,6 +173,6 @@ Module['FS_createPath']('/CirclePong/Content', 'Paks', true, true);
   }
 
  }
- loadPackage({"files": [{"filename": "/Manifest_NonUFSFiles_HTML5.txt", "start": 0, "end": 53, "audio": 0}, {"filename": "/UE4CommandLine.txt", "start": 53, "end": 93, "audio": 0}, {"filename": "/CirclePong/Content/Paks/CirclePong-HTML5.pak", "start": 93, "end": 82478887, "audio": 0}], "remote_package_size": 82478887, "package_uuid": "007a93de-c679-4cb0-ade7-b279eec2ef99"});
+ loadPackage({"files": [{"filename": "/Manifest_NonUFSFiles_HTML5.txt", "start": 0, "end": 53, "audio": 0}, {"filename": "/UE4CommandLine.txt", "start": 53, "end": 93, "audio": 0}, {"filename": "/CirclePong/Content/Paks/CirclePong-HTML5.pak", "start": 93, "end": 10459208, "audio": 0}], "remote_package_size": 10459208, "package_uuid": "b1d00509-a8f1-4dbf-92b2-70246affc5eb"});
 
 })();
