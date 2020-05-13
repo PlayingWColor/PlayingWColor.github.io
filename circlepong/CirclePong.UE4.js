@@ -73,7 +73,7 @@ var Module = {
 	assetDownloadProgress: {}, // Track how many bytes of each needed asset has been downloaded so far.
 
 	UE4_indexedDBName: 'UE4_assetDatabase_CirclePong', // this should be an ascii ID string without special characters that is unique to the project that is being packaged
-	UE4_indexedDBVersion: 202004292214, // Bump this number to invalidate existing IDB storages in browsers.
+	UE4_indexedDBVersion: 202005130054, // Bump this number to invalidate existing IDB storages in browsers.
 };
 
 
@@ -268,7 +268,7 @@ function detectWebGL() {
 // Canvas scaling mode should be set to one of: 1=STRETCH, 2=ASPECT, or 3=FIXED.
 // This dictates how the canvas size changes when the browser window is resized
 // by dragging from the corner.
-var canvasWindowedScaleMode = 0 /*STRETCH*/;
+var canvasWindowedScaleMode = 1 /*STRETCH*/;
 
 // High DPI setting configures whether to match the canvas size 1:1 with
 // the physical pixels on the screen.
@@ -281,8 +281,8 @@ var canvasWindowedUseHighDpi = true;
 // If canvasWindowedScaleMode == 2 (ASPECT), this size defines only the aspect ratio
 //                                           that the canvas will be constrained to.
 // If canvasWindowedScaleMode == 1 (STRETCH), these size values are ignored.
-var canvasAspectRatioWidth = document.getElementById('mainarea').clientWidth;//1366;
-var canvasAspectRatioHeight = document.getElementById('mainarea').clientHeight;//768;
+var canvasAspectRatioWidth = 1366;
+var canvasAspectRatioHeight = 768;
 
 
 // The resizeCanvas() function recomputes the canvas size on the page as the user changes
