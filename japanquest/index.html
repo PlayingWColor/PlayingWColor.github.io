@@ -14,36 +14,55 @@ body { margin: 0; padding: 0; }
 <body>
 <style>
     .mapboxgl-popup {
-        max-width: 400px;
         font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
     }
+	#side-panel {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		height: 100%;
+		width: 100%;
+		overflow: auto;
+		background: rgba(255, 255, 255, 0);
+		pointer-events:none;
+	}
+
+	@media (max-aspect-ratio: 1/1)
+	{
+	#photo {
+		object-fit:contain;
+		max-width:100%;
+		max-height:50%;
+	}
+	}
+	@media (min-aspect-ratio: 1/1){
+	#photo {
+		object-fit:contain;
+		max-width:30%;
+		max-height:50%;
+	}
+}
+	.marker {
+		display: block;
+		border: none;
+		border-radius: 50%;
+		cursor: pointer;
+		padding: 0;
+	}
 </style>
 <div id="map"></div>
+<div id="side-panel"></div>
 <script>
+var lastMarker;
 	mapboxgl.accessToken = 'pk.eyJ1IjoieGVub2x1cHVzIiwiYSI6ImNrOGx0bG53MTBnbGcza213eDVzaTZtcWQifQ.l2C4cF7Kyk1wNqOjxBqlag';
     const map = new mapboxgl.Map({
         container: 'map',
         // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-        style: 'mapbox://styles/mapbox/dark-v11',
-        center: [139.767211221037, 35.6814094910545],
-        zoom: 11.15
+        style: 'mapbox://styles/mapbox/satellite-v9',
+        center: [139.73, 35.6814094910545],
+        zoom: 12
     });
-
-	function generate_lat_lang(imageData=''){
-       
-		//geting cordinates of latitude
-		var latDegree = imageData.exifdata.GPSLatitude[0].numerator;
-		var latMinute = imageData.exifdata.GPSLatitude[1].numerator;
-		var latSecond = imageData.exifdata.GPSLatitude[2].numerator/imageData.exifdata.GPSLatitude[2].denominator;
-		
-		document.getElementById("Lati").innerText = (latDegree + (latMinute/60) + (latSecond/3600)).toFixed(8);;
-		//geting cordinates of longitude
-		var lonDegree = imageData.exifdata.GPSLongitude[0].numerator;
-		var lonMinute = imageData.exifdata.GPSLongitude[1].numerator;
-		var lonSecond = imageData.exifdata.GPSLongitude[2].numerator/imageData.exifdata.GPSLongitude[2].denominator;
-		document.getElementById("Long").innerText = (lonDegree + (lonMinute/60) + (lonSecond/3600)).toFixed(8);
-				 
-    }
 
 
 
@@ -61,6 +80,7 @@ body { margin: 0; padding: 0; }
             'data': 'result.json'
         });
         // Add a layer showing the places.
+		/*
         map.addLayer({
             'id': 'places',
             'type': 'symbol',
@@ -69,28 +89,97 @@ body { margin: 0; padding: 0; }
                 'icon-image': ['get', 'icon'],
                 'icon-allow-overlap': true
             }
-        });
+        });*/
+		//var geojson;
+		var geojson;
+		fetch("result.json")
+          .then((res) => {
+            return res.json();
+          })
+          .then((data) => 
+		  {
+			geojson = data;
+			console.log(geojson)
 
+		// Add markers to the map.
+		for (const marker of geojson.features) {
+			// Create a DOM element for each marker.
+			const el = document.createElement('div');
+			const width = 100;
+			const height = 100;
+			el.className = 'marker';
+			//el.setHTML(marker.properties.image)
+			el.style.backgroundImage = marker.properties.imageloc;
+			el.style.width = `${width}px`;
+			el.style.height = `${height}px`;
+			el.style.backgroundSize = '100%';
+			 
+			el.addEventListener('click', () => {
+				//window.alert(marker.properties.message);
+				            // Copy coordinates array.
+				const coordinates = marker.geometry.coordinates.slice();
+				const description = marker.properties.description;
+				const image = marker.properties.image;
+				// Ensure that if the map is zoomed out such that multiple
+				// copies of the feature are visible, the popup appears
+				// over the copy being pointed to.
+				//while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+				//	coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+				//}
+				
+				document.getElementById('side-panel').setHTML(image);
+				
+
+				//new mapboxgl.Popup()
+				//    .setLngLat(coordinates)
+				//    .setHTML(description)
+				//    .addTo(map);
+				if(lastMarker)
+					lastMarker.remove();
+
+				lastMarker = new mapboxgl.Marker()
+					.setLngLat(coordinates)
+					.addTo(map);
+ 
+			});
+		 
+		// Add markers to the map.
+			new mapboxgl.Marker(el)
+				.setLngLat(marker.geometry.coordinates)
+				.addTo(map);
+		}
+	  });
+/*
         // When a click event occurs on a feature in the places layer, open a popup at the
         // location of the feature, with description HTML from its properties.
         map.on('click', 'places', (e) => {
             // Copy coordinates array.
             const coordinates = e.features[0].geometry.coordinates.slice();
             const description = e.features[0].properties.description;
-
+			const image = e.features[0].properties.image;
             // Ensure that if the map is zoomed out such that multiple
             // copies of the feature are visible, the popup appears
             // over the copy being pointed to.
             while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
                 coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
             }
+			
+			document.getElementById('side-panel').setHTML(image);
+			
 
-            new mapboxgl.Popup()
-                .setLngLat(coordinates)
-                .setHTML(description)
-                .addTo(map);
+            //new mapboxgl.Popup()
+            //    .setLngLat(coordinates)
+            //    .setHTML(description)
+            //    .addTo(map);
+			if(lastMarker)
+				lastMarker.remove();
+
+			lastMarker = new mapboxgl.Marker()
+				.setLngLat(coordinates)
+				.addTo(map);
+
         });
-
+*/
         // Change the cursor to a pointer when the mouse is over the places layer.
         map.on('mouseenter', 'places', () => {
             map.getCanvas().style.cursor = 'pointer';

@@ -7,6 +7,8 @@ defualtFeature = {
     'type': 'Feature',
     'properties': {
         'description': "",
+        'image': "",
+        'imageloc': "",
         'icon': 'attraction'
     },
     'geometry': {
@@ -21,7 +23,9 @@ features = []
 for a in images: 
   data = gpsphoto.getGPSData(os.getcwd() + f'\\{a}')
   newFeature = copy.deepcopy(defualtFeature)
-  newFeature['properties']['description'] = "<img src=\"photos/"+a+"\" height=\"400\">"
+  newFeature['properties']['image'] = "<img src=\"photos/"+a+"\" id=\"photo\">"
+  newFeature['properties']['imageloc'] = "url(photos/"+a+")"
+  newFeature['properties']['description'] = "<img src=\"photos/"+a+"\" id=\"photo\">"
   newFeature['geometry']['coordinates'] = [data['Longitude'], data['Latitude']]
   features.append(newFeature)
 
