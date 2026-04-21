@@ -7,7 +7,7 @@
 	<h3>
 		{% for file in site.static_files  %}
 			{% if file.path contains page.dir %}
-				<li><a href="{{ page.path }}">{{ file.name }}</a></li>
+				<li><a href="{{ file.path }}">{{ file.name }}</a></li>
 			{% endif %}
 		{% endfor %}
 	</h3>
